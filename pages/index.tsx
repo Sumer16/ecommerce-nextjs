@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { title } from 'process'
 
 import { useQuery } from 'react-query'
 import { getHomepagePosts } from '../queries/queries'
+
+import PostCard from '../components/PostCard'
 
 const Home: NextPage = () => {
 
@@ -19,7 +20,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {isSuccess && posts.map((post: { title: string }) => <div>{post.title}</div>)}
+      {isSuccess &&
+        posts.map((post: { id: number, title: string, body: string, featured_image: { id: string } }) => 
+        <PostCard 
+          key={post.id} 
+          title={post.title} 
+          image={post.featured_image.id} 
+          body={post.body} 
+        />)
+      }
     </div>
   )
 }
