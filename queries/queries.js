@@ -9,7 +9,9 @@ export const getHomepagePosts = async () => {
                 id
                 title
                 slug
-                featured_image
+                featured_image {
+                    id
+                }
                 body
             }
         }
